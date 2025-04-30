@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
-{
-    /**
+/**
      * class HomeController
      * 
      * This controller is implemented to handle all the methods responsible with auth0 
@@ -17,4 +17,11 @@ class HomeController extends Controller
      * @version v1.0.0
      * @see https://auth0.com/docs/quickstart/webapp/laravel
      */
+class HomeController extends Controller
+{
+     public function index(){
+
+        return view('');
+
+     }
 }
