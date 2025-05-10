@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Membership;
 
+use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ResetPasswordRequest;
+use App\Mail\PasswordResetNotificationMail;
 use App\Models\Country;
 use App\Models\Designation;
 use App\Models\District;
@@ -17,6 +20,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class MemberController extends Controller
 {
@@ -153,6 +157,30 @@ class MemberController extends Controller
 
         return response()->json($districts);
     }
+
+    public function resetPassword(){
+
+        return view('/membership/reset_password');
+    }
+
+    public function postPassword(ResetPasswordRequest $request){
+        $email = $request->email;
+        $email_availability = User::whereNull('deleted_at')->where('active', true)->where('available', true)->where('email', $email);
+
+        if (!$email_availability->exists()) {
+
+            return redirect()->back()->with('general_error', 'A user with this email'. ' ' .$email. ' ' .'is not found, please register first.');
+            // throw throwGeneralException('A user with this email'. ' ' .$email. ' ' .'is not found, please register first.');
+        } else {
+            //sending an email to user
+            Mail::to($email)->send(new PasswordResetNotificationMail($email_availability->first()));
+
+            return redirect()->back()->with('general_error', 'A reset link has been sent to your email address.');
+        }
+        
+    }
+
+    public function newPassword(){}
 
     
     

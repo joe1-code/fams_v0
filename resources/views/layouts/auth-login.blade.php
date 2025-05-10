@@ -197,7 +197,7 @@
                                     <img src="{{ asset('images/fams-logo.jpg') }}" alt="Logo">
                                 </div>
 
-                                <form method="POST" action="{{ route('landing') }}">
+                                <form method="POST" action="{{ route('login') }}">
                                     @csrf
 
                                     <div class="form-group mb-3">
@@ -239,7 +239,7 @@
                                 </form>
 
                                 <div class="text-center mt-3">
-                                    <a href="auth-recoverpw.html" class="text-muted">Forgot your password?</a>
+                                    <a href="{{ route('reset_password') }}" class="text-muted">Forgot your password?</a>
                                 </div>
 
                                 <div class="text-center mt-4">

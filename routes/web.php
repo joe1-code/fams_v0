@@ -9,9 +9,10 @@ Route::get('/', function () {
     return view('layouts/auth-login');
 })->name('home');
 
+include 'membership/members.php';
 // <==========================================membership routes============================================================================>
 
-Route::post('/landing', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('landing');
+Route::post('/welcome', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
 Route::get('/landing/homepage', [App\Http\Controllers\Auth\LoginController::class, 'homePage'])->name('landing/homepage');
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::get('/members', [App\Http\Controllers\Membership\MemberController::class, 'members'])->name('members');

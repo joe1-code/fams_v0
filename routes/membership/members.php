@@ -1,11 +1,21 @@
 <?php
 
+use App\Http\Controllers\Membership\MemberController;
 use Illuminate\Support\Facades\Route;
 
 /**
 /**
  * MEMBERSHIP
  */
+
+Route::get('reset_password', [MemberController::class, 'resetPassword'])->name('reset_password');
+Route::prefix('memberships')->name('membership.')->group(function (){
+
+     Route::post('post_password', [MemberController::class, 'postPassword'])->name('post_password');
+     Route::get('new_password/{id}', [MemberController::class, 'newPassword'])->name('new_password');
+     Route::post('reset_password', [MemberController::class, 'resetPassword'])->name('reset_password');
+
+ });
 Route::group([
     'namespace' => 'membership',
 ], function() {
