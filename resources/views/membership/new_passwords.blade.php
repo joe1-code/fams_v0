@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet">
     <link href="{{ asset('dist-assets/css/themes/lite-purple.min.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
 
     <style>
         body, html {
@@ -113,35 +114,37 @@
                         <div class="img-circle">
                             <img src="{{ asset('images/fams-logo.jpg') }}" alt="Logo">
                         </div>
-                        <form method="POST" action="{{ route('membership.post_password') }}">
-                            @csrf
+                        <form method="POST" action="{{ route('membership.store_password', ['id' => $id]) }}">
+                        @csrf
 
-                            <div class="alert alert-success text-center mb-4" role="alert">
-                                Enter your Email and instructions will be sent to you!
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <input placeholder="Type your email here!"
-                                    class="form-control @error('email') is-invalid @enderror"
-                                    name="email" id="email" type="text"
-                                    value="{{ old('email') }}" autofocus />
-                                @error('email')
+                        <div class="form-group mb-3 position-relative">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                id="password" name="password" placeholder="Type your new password here!">
+                            <span class="fas fa-eye toggle-password" toggle="#password"
+                                style="position:absolute; top:50%; right:15px; transform:translateY(-50%); cursor:pointer;"></span>
+                            @error('password')
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                @enderror
-                            </div>
-
-                            @if(session('message'))
-                                <div class="alert alert-warning">
-                                    {{ session('message') }}
-                                </div>
-                            @endif
-
-                            <button class="btn btn-primary w-100">Submit</button>
-                        </form>
-                        <br>
-                        <div>
-                            <p>Remember it ? <a href="{{ route('home') }}">sign in here!</a></p>
+                            @enderror
                         </div>
+
+                        <div class="form-group mb-3 position-relative">
+                            <input type="password" class="form-control"
+                                id="password_confirmation" name="password_confirmation"
+                                placeholder="Re-type your password here!">
+                            <span class="fas fa-eye toggle-password" toggle="#password_confirmation"
+                                style="position:absolute; top:50%; right:15px; transform:translateY(-50%); cursor:pointer;"></span>
+                        </div>
+
+                        @if(session('message'))
+                            <div class="alert alert-warning">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+
+                        <button type="submit" class="btn btn-primary w-100" id="reset_password">Submit</button>
+                    </form>
+                        <br>
+                        
                     </div>
                 </div>
             </div>
@@ -160,3 +163,36 @@
 </body>
 
 </html>
+{{-- Font Awesome + jQuery CDN --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{{-- jQuery Toggle Script --}}
+<script>
+    $(document).ready(function(){
+        $('.toggle-password').on('click', function(){
+            const input = $($(this).attr('toggle'));
+            const type = input.attr('type') === "password" ? "text" : "password";
+            input.attr("type", type);
+            if ($(this).hasClass("fa-eye")) {
+            $(this).removeClass("fa-eye").addClass("fa-eye-slash");
+        } else {
+            $(this).removeClass("fa-eye-slash").addClass("fa-eye");
+        }        
+     });
+
+     $("#reset_password").on('submit', function(){
+        const passcode = $("#password").val();
+        console.log(passcode);
+        
+        const verify_passcode = $("#password_confirmation").val();
+
+        if (passcode.length < 8 || verify_passcode.length < 8) {
+            alert('Passwords must be at least 8 characters');
+        }
+
+        if (passcode != verify_passcode) {
+            alert("Passwords do not match!");
+        }
+     });
+    });
+</script>

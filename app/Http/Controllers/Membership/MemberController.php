@@ -175,12 +175,20 @@ class MemberController extends Controller
             //sending an email to user
             Mail::to($email)->send(new PasswordResetNotificationMail($email_availability->first()));
 
-            return redirect()->back()->with('general_error', 'A reset link has been sent to your email address.');
+            return redirect()->back()->with('success', 'A reset link has been sent to your email address.');
         }
         
     }
 
-    public function newPassword(){}
+    public function newPassword($id){
+
+        return view('/membership/new_passwords')
+                    ->with('id', $id);
+    }
+
+    public function storePassword($id){
+        dd($id);
+    }
 
     
     
