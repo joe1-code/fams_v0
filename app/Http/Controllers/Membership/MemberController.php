@@ -168,7 +168,6 @@ class MemberController extends Controller
 
     public function postPassword(ResetPasswordRequest $request){
         $email = $request->email;
-        dd($email);
         $email_availability = User::whereNull('deleted_at')->where('active', true)->where('available', true)->where('email', $email);
 
         if (!$email_availability->exists()) {
@@ -200,13 +199,14 @@ class MemberController extends Controller
 
             $new_passcode = Hash::make($input['password']);
 
-            $user_instance->update(['password', $new_passcode]);
+            $user_instance->update(['password'=> $new_passcode]);
         });
         
         $request = ['username' => $user_instance->username, 'password' => $user_instance->password];
-        (new LoginController())->login(Request $request);
-
-        return redirect()->back()->with('success', 'Password successfully updated');
+        //auto login after reset password ========> in future.
+        //  Auth::login($user_instance);
+        // dd(Auth::check(), Auth::user());
+        return redirect()->route('home')->with('success', 'Password successfully updated, login to proceed!');
     }
 
     
