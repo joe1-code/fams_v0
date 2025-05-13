@@ -14,7 +14,7 @@ Route::prefix('memberships')->name('membership.')->group(function (){
      Route::post('post_password', [MemberController::class, 'postPassword'])->name('post_password');
      Route::get('new_password/{id}', [MemberController::class, 'newPassword'])->name('new_password');
      Route::post('reset_password', [MemberController::class, 'resetPassword'])->name('reset_password');
-     Route::post('store_password/{id}', [MemberController::class, 'storePassword'])->name('store_password');
+     Route::post('store_password', [MemberController::class, 'storePassword'])->name('store_password');
 
  });
 Route::group([

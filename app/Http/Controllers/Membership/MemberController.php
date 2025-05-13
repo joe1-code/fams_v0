@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Membership;
 
 use App\Exceptions\GeneralException;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostPasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Mail\PasswordResetNotificationMail;
 use App\Models\Country;
@@ -20,6 +22,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class MemberController extends Controller
@@ -165,6 +168,7 @@ class MemberController extends Controller
 
     public function postPassword(ResetPasswordRequest $request){
         $email = $request->email;
+        dd($email);
         $email_availability = User::whereNull('deleted_at')->where('active', true)->where('available', true)->where('email', $email);
 
         if (!$email_availability->exists()) {
@@ -186,8 +190,23 @@ class MemberController extends Controller
                     ->with('id', $id);
     }
 
-    public function storePassword($id){
-        dd($id);
+    public function storePassword(PostPasswordRequest $request){
+        $input = $request->all();
+
+        $user_instance = User::whereNull('deleted_at')->where('active', true)->where('available', true)->where('id', $input['id'])->first();
+
+        DB::transaction(function() use($input, $user_instance){
+
+
+            $new_passcode = Hash::make($input['password']);
+
+            $user_instance->update(['password', $new_passcode]);
+        });
+        
+        $request = ['username' => $user_instance->username, 'password' => $user_instance->password];
+        (new LoginController())->login(Request $request);
+
+        return redirect()->back()->with('success', 'Password successfully updated');
     }
 
     
