@@ -30,9 +30,16 @@
         color: #f0f0f0;
     }
 
-    .sidebar {
-        min-height: 100vh;
-    }
+   .sidebar {
+  width: 250px; /* smaller width */
+  min-width: 250px;
+  max-width: 250px;
+}
+
+.container-fluid > .row > .col-md-2 {
+  flex: 0 0 250px;
+  max-width: 250px;
+}
 
     .sidebar .nav-link {
         padding: 10px 0;
@@ -52,6 +59,13 @@
   .dropdown-menu .dropdown-item:focus {
     color: white;
     background-color: #4caf50;
+  }
+
+  .sidebar-logo {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
   }
 </style>
 
@@ -101,7 +115,7 @@
             <!-- Sidebar -->
             <div class="col-md-2 gradient-bg sidebar py-4">
                 <div class="text-center mb-4">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid sidebar-logo">
+                    <img src="{{ asset('assets/images/exmpl.jpeg') }}" alt="Logo" class="img-fluid sidebar-logo">
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item"><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home me-2"></i>HomePage</a></li>
