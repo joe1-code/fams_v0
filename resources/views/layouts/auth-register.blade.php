@@ -1,175 +1,207 @@
-<!-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif -->
-
-
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>Register | FAMS - Family Management System.</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>FAMS - Membership Registration</title>
 
-    <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- Google Font & Bootstrap -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="{{ asset('dist-assets/css/themes/lite-purple.min.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: whitesmoke;
+        }
+
+        .auth-content {
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .zoomIn {
+            animation: zoomIn 1.2s ease-in;
+        }
+
+        .card {
+            border: none;
+            border-radius: 8px;
+            max-width: 900px;
+            min-height: 470px;
+            margin: auto;
+            overflow: hidden;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .img-circle {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(to right, #8dc63f, #255196);
+            padding: 4px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .img-circle img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .btn-primary {
+            background-color: #305fa7;
+            border-color: #305fa7;
+        }
+
+        .btn-primary:hover {
+            background-color: #244a84 !important;
+            border-color: #244a84 !important;
+        }
+
+        .form-control:focus {
+            border-color: #305fa7;
+            box-shadow: 0 0 0 0.2rem rgba(48, 95, 167, 0.25);
+        }
+
+        #container {
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .center-form {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    </style>
 </head>
-
 <body>
-    <div class="account-pages my-5 pt-sm-5">
-       
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
-                @if (session('success'))
-            <div class="col-md-12 alert alert-success">
+<div class="container-fluid py-5" >
+    <div class="auth-content zoomIn" id="container">
+
+        @if(session('success'))
+            <div class="alert alert-success text-center mb-4" role="alert">
                 {{ session('success') }}
             </div>
-            @endif
+        @endif
 
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
+        <div class="card w-100" style="max-width: 700px;"  style="background-color: red;">
+            <div class="p-4">
+                <h5 class="text-center mb-3" style="color: #5cb85c;">FAMILY MANAGEMENT SYSTEM (FAMS)</h5>
+                <div class="img-circle">
+                    <img src="{{ asset('images/fams-logo.jpg') }}" alt="Logo">
                 </div>
-            @endif
-                    <div class="card overflow-hidden">
-                        <div class="bg-primary bg-soft">
-                            <div class="row">
-                                <div class="col-7">
-                                    <div class="text-primary p-4">
-                                        <h5 class="text-primary">Free Register</h5>
-                                        <p>Get your free FAMS account now.</p>
-                                    </div>
-                                </div>
-                                <div class="col-5 align-self-end">
-                                    <img src="assets/images/profile-img.png" alt="" class="img-fluid">
-                                </div>
-                            </div>
+
+                <form method="POST" action="{{ route('membership.register_member') }}" class="col-md-11 center-form">
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstname" class="form-label text-start w-100">Firstname</label>
+                            <input type="text" class="form-control @error('firstname') is-invalid @enderror" id="firstname" name="firstname" placeholder="Enter Firstname">
+                            @error('firstname')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-                        <div class="card-body pt-0">
-                            <div>
-                                <a href="index.html">
-                                    <div class="avatar-md profile-user-wid mb-4">
-                                        <span class="avatar-title rounded-circle bg-light">
-                                            <img src="assets/images/logo.svg" alt="" class="rounded-circle" height="34">
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="p-2">
-                                <form class="needs-validation" action="{{ route('register_member') }}" method="POST" novalidate>
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="firstname" class="form-label">Firstname</label>
-                                        <input type="text" class="form-control @error('firstname') is-invalid @enderror" id="firstname" name="firstname" placeholder="Enter Firstname" required>
-                                        @if ($errors->has('firstname'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('firstname') }}
-                                            </div>
-                                        @endif
-                                        <div class="invalid-feedback">
-                                            Please Enter Firstname
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="middlename" class="form-label">Middlename</label>
-                                        <input type="text" class="form-control @error('middlename') is-invalid @enderror" id="middlename" name="middlename" placeholder="Enter Middlename" required>
-                                        @if ($errors->has('middlename'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('middlename') }}
-                                            </div>
-                                        @endif
-                                        <div class="invalid-feedback">
-                                            Please Enter Middlename
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="lastname" class="form-label">Lastname</label>
-                                        <input type="text" class="form-control @error('lastname') is-invalid @enderror" id="lastname" name="lastname" placeholder="Enter Lastname" required>
-                                        @if ($errors->has('lastname'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('lastname') }}
-                                            </div>
-                                        @endif
-                                        <div class="invalid-feedback">
-                                            Please Enter Lastname
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter email" >
-                                        <!-- @if ($errors->has('email'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('email') }}
-                                            </div>
-                                        @endif
-                                        <div class="invalid-feedback">
-                                            Please Enter Email
-                                        </div> -->
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="Enter Phone" required>
-                                        @if ($errors->has('phone'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('phone') }}
-                                            </div>
-                                        @endif
-                                        <div class="invalid-feedback">
-                                            Please Enter Phone
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="userpassword" class="form-label">Password</label>
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="userpassword" name="password" placeholder="Enter password" required>
-                                        @if ($errors->has('password'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('password') }}
-                                            </div>
-                                        @endif
-                                        <div class="invalid-feedback">
-                                            Please Enter Password
-                                        </div>
-                                    </div>
-                                    <div class="mt-4 d-grid">
-                                        <button class="btn btn-primary waves-effect waves-light" type="submit">Register</button>
-                                    </div>
-                                </form>
-                            </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="middlename" class="form-label text-start w-100">Middlename</label>
+                            <input type="text" class="form-control @error('middlename') is-invalid @enderror" id="middlename" name="middlename" placeholder="Enter Middlename">
+                            @error('middlename')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
-                    <div class="mt-5 text-center">
-                        <div>
-                            <p>Already have an account ? <a href="{{ route('home') }}" class="fw-medium text-primary"> Login</a> </p>
-                            <p>© <script>document.write(new Date().getFullYear())</script> All rights reserved. <i class="mdi mdi-heart text-danger"></i> by FAMS</p>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="lastname" class="form-label text-start w-100">Lastname</label>
+                            <input type="text" class="form-control @error('lastname') is-invalid @enderror" id="lastname" name="lastname" placeholder="Enter Lastname">
+                            @error('lastname')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label text-start w-100">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter Email">
+                            @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
-                </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="phone" class="form-label text-start w-100">Phone</label>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="Enter Phone">
+                            @error('phone')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mb-3 position-relative">
+                            <label for="userpassword" class="form-label text-start w-100">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Enter Password">
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword"><i class="fas fa-eye"></i></button>
+                            </div>
+                            @error('password')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    @if(session('message'))
+                        <div class="alert alert-warning">{{ session('message') }}</div>
+                    @endif
+
+                    <button class="btn btn-primary w-100 mt-2">Register</button>
+
+                    <div class="mt-4 text-center">
+                        <p>Already have an account? <a href="{{ route('home') }}" class="fw-medium text-primary">Login</a></p>
+                    </div>
+                </form>
             </div>
         </div>
-        <!-- JAVASCRIPT -->
-        <script src="assets/libs/jquery/jquery.min.js"></script>
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-        <script src="assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="assets/libs/node-waves/waves.min.js"></script>
-        <!-- validation init -->
-        <script src="assets/js/pages/validation.init.js"></script>
-        <!-- App js -->
-        <script src="assets/js/app.js"></script>
-    </body>
+
+        <!-- Footer -->
+        <div class="mt-4 text-center">
+            <b style="color: #305fa7">
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear())</script>
+                <a target="_blank" href="#" style="color: #5cb85c">Family Management System</a> |
+                All Rights Reserved | FAMS V1.0.0
+            </b>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap & Password Toggle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('togglePassword')?.addEventListener('click', function () {
+        const passwordField = document.getElementById('password');
+        const icon = this.querySelector('i');
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+    });
+</script>
+</body>
 </html>

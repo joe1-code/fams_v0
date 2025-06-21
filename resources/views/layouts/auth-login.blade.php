@@ -16,6 +16,7 @@
     <style>
         body {
             font-family: 'Nunito', sans-serif;
+            background-color: whitesmoke;
         }
 
         .auth-content {
@@ -31,8 +32,8 @@
         .card {
             border: none;
             border-radius: 8px;
-            max-width: 950px;
-            min-height: 600px;
+            max-width: 850px;
+            min-height: 470px;
             margin: auto;
             overflow: hidden;
             box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
@@ -73,21 +74,27 @@
             border-color: #305fa7;
             box-shadow: 0 0 0 0.2rem rgba(48, 95, 167, 0.25);
         }
+
+        #container{
+            /* background-color: green; */
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
-<div class="container-fluid py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="auth-content zoomIn">
+<div class="container-fluid py-5" >
+            <div class="auth-content zoomIn" id="container">
                 @if(session('success'))
                     <div class="alert alert-success text-center mb-4" role="alert">
                         {{ session('success') }}
                     </div>
                 @endif
 
-                <div class="card">
-                    <div class="row g-0 h-100">
+                <div class="card" >
+                    <div class="row g-0 h-100" >
                         <!-- Carousel -->
                         <div class="col-md-6 d-none d-md-block">
                             <div id="loginCarousel" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="4000">
@@ -143,10 +150,10 @@
                                         <div class="alert alert-warning">{{ session('message') }}</div>
                                     @endif
 
-                                    <div class="form-check mb-3">
+                                    <!-- <div class="form-check mb-3" style="background-color: red;">
                                         <input class="form-check-input" type="checkbox" id="remember" name="remember">
                                         <label class="form-check-label" for="remember">Remember me</label>
-                                    </div>
+                                    </div> -->
 
                                     <button class="btn btn-primary w-100">Login</button>
                                 </form>
@@ -175,8 +182,6 @@
                     </b>
                 </div>
             </div>
-        </div>
-    </div>
 </div>
 
 <!-- Bootstrap & Custom JS -->

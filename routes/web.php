@@ -18,7 +18,6 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 Route::get('/members', [App\Http\Controllers\Membership\MemberController::class, 'members'])->name('members');
 Route::get('/members_dt', [App\Http\Controllers\Membership\MemberController::class, 'getForDt'])->name('members/getForDt');
 Route::get('/register', [App\Http\Controllers\Membership\MemberController::class, 'register'])->name('register');
-Route::post('/register_member', [App\Http\Controllers\Membership\MemberController::class, 'registerMember'])->name('register_member');
 Route::get('/contributions', [App\Http\Controllers\Membership\MemberController::class, 'contributions'])->name('contributions');
 Route::get('/reports', [App\Http\Controllers\Reports\ReportsController::class, 'generateReports'])->name('reports');
 Route::get('/get_reports_dt', [App\Http\Controllers\Reports\ReportsController::class, 'getReportsDt'])->name('get_reports_dt');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Membership;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MemberRegistrationRequest;
 use App\Http\Requests\PostPasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Mail\PasswordResetNotificationMail;
@@ -38,9 +39,10 @@ class MemberController extends Controller
         return view('layouts/auth-register');
     }
 
-    public function registerMember(Request $request) {
+    public function registerMember(MemberRegistrationRequest $request) {
         // Validate the request data
-        
+        $request = request()->all();
+        dd($request);
         $validatedData = $request->validate([
             'firstname' => 'required|string|max:255',
             'middlename' => 'required|string|max:255',
