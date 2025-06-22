@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Leader;
 use App\Models\MonthlyPayment;
 use App\Models\User;
 use App\Repositories\UserRepository;
@@ -40,11 +41,18 @@ class LoginController extends Controller
             $data = $this->userRepository->membership($validation);
 
             $chairperson = (new User())->query()->where('unit_id', 2)->where('designation_id', 3)->first();
-            // dd($chairperson);
-            
+            $secretary = (new User())->query()->where('unit_id', 2)->where('designation_id', 4)->first();
+            $accountant = (new User())->query()->where('unit_id', 2)->where('designation_id', 5)->first();
+
              $total_contributions = MonthlyPayment::where('user_id', $user->id)->pluck('total_contributions')->all();
 
-            return view('layouts.home', ['memberData' => $data, 'username' => $validation['username'], 'contributions' => $total_contributions]);
+            return view('layouts.home', ['memberData' => $data, 
+            'username' => $validation['username'],
+             'contributions' => $total_contributions, 
+             'chairperson' => strtoupper($chairperson->firstname. ' ' .$chairperson->middlename. ' ' .$chairperson->lastname),
+             'secretary' => strtoupper($secretary->firstname. ' ' .$secretary->middlename. ' ' .$secretary->lastname),
+             'accountant' => strtoupper($accountant->firstname. ' ' .$accountant->middlename. ' ' .$accountant->lastname)
+            ]);
             // return redirect()->intended(route('contributions'))
             // ->with('memberData', $data);
         }
