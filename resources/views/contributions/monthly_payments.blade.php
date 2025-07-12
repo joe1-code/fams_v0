@@ -4,108 +4,131 @@
 
 @section('styles')
     <style>
-        .separator-line {
-            border-bottom: 1px solid #a0d6a0;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
+    /* Add faint green border styling for separator lines */
+    .separator-line {
+        /**faint green */
+         border-bottom: 1px solid #a0d6a0; 
+        /* border-bottom: 1px solid #7db8d6;  */
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
 
-        .title_name {
-            font-size: 16px;
-            color: #333333;
-        }
+    .title_name{
+        font-size: 16px;
+        color: #333333; 
+    }
 
-        .list-group-item-heading {
-            font-weight: normal;
-        }
-    </style>
+    .list-group-item-heading {
+        font-weight: normal;
+    }
+</style>
 @endsection
 
 @section('content')
-<div class="page-content">
-    <div class="container-fluid">                        
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-4 text-center">MONTHLY CONTRIBUTIONS PAYMENTS MENU</h4>
+<div class="main-content">
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="computation-group">
+        <div class="page-content">
+            <div class="container-fluid">                        
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4" style="display: flex; justify-content:center;">MONTHLY CONTRIBUTIONS PAYMENTS MENU</h4>
+                                <div class="row">
+                        <div class="col-md-12">
+                            <div>&nbsp;</div>
+                            <div class="computation-group">
+                                <!-- Here to put the content panel-->
+                                <div style="color:#fff">
                                     <div class="col-sm-12 col-md-12">
+
                                         <br>
+                                        <!-- Add a slightly darker grey background to the heading or surrounding div -->
                                         <div style="background-color: #d3d3d3; padding: 10px;">
-                                            <h6 class="cancel_button site-btn text-center text-dark m-0">
-                                                MONTHLY PAYMENTS PROCESS
-                                            </h6>
+                                            <h6 class="cancel_button site-btn" style="color: black; margin: 0; display:flex; justify-content:center;">MONTHLY PAYMENTS PROCESS</h6>
                                         </div>
                                         <br>
 
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="separator-line">
-                                                    <a href="{{ route('monthly_payment_show') }}" style="color: inherit;">
-                                                        <h6>
-                                                            <i class="icon fa fa-credit-card text-dark"></i>
-                                                            <span class="title_name">&nbsp;&nbsp;Process Monthly Payments</span>
+                                                    <a href="#">
+                                                        <h6 class="list-group-item-heading ng-binding">
+                                                            <a href="{{ route('monthly_payment_show') }}" style="color: #333;"> 
+                                                                <i class="icon fa fa-credit-card" style="color: #333;"></i>
+                                                                <span class="title_name">&nbsp;&nbsp;Process Monthly Payments</span>
+                                                            </a>
                                                         </h6>
-                                                        <p class="text-muted">
+                                                        <p style="color: grey;" class="list-group-item-text ng-binding">
                                                             Pay your current monthly contributions which you are entitled ready for processing.
                                                         </p>
+
                                                     </a>
                                                 </div>
                                                 <div class="separator-line">
-                                                    <a href="{{ route('workflow_history') }}" style="color: inherit;">
-                                                        <h6>
-                                                            <i class="icon fa fa-history text-dark"></i>
-                                                            <span class="title_name">&nbsp;&nbsp;Workflow History</span>
+                                                    <a href="#">
+                                                        <h6 class="list-group-item-heading ng-binding">
+                                                            <a href="{{ route('workflow_history') }}" style="color: #333;"> 
+                                                                <i class="icon fa fa-history" style="color: #333;"></i>
+                                                                <span class="title_name">&nbsp;&nbsp;Workflow History</span>
+                                                            </a>
                                                         </h6>
-                                                        <p class="text-muted">
+                                                        <p style="color: grey;" class="list-group-item-text ng-binding">
                                                             Keep Track or Make Followup of your Workflows for Submitted Monthly Contributions Payments.
                                                         </p>
+
                                                     </a>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="separator-line">
-                                                    <a href="{{ route('monthly_documents') }}" style="color: inherit;">
-                                                        <h6>
-                                                            <i class="icon fa fa-book-open text-dark"></i>
+                                                    <a href="{{ route('monthly_documents') }}" style="color: #333;">
+                                                        <h6 class="list-group-item-heading ng-binding">
+                                                            <i class="icon fa fa-book-open"  style="color: #333;"></i>
                                                             <span class="title_name">&nbsp;&nbsp;Document Centre</span>
                                                         </h6>
-                                                        <p class="text-muted">
-                                                            View your submitted documents ready for payment processing.
+                                                        <p style="color: grey;" class="list-group-item-text ng-binding">
+                                                            View your submitted documents ready for payment processing 
                                                         </p>
                                                     </a>
                                                 </div>
                                                 <div class="separator-line">
-                                                    <a href="{{ route('monthly_nonpaid') }}" style="color: inherit;">
-                                                        <h6>
-                                                            <i class="icon fa fa-check-circle text-dark"></i>
-                                                            <span class="title_name">&nbsp;&nbsp;Paid And Non Paid Members</span>
+                                                    <a href="#">
+                                                        <h6 class="list-group-item-heading ng-binding">
+                                                            <a href="{{ route('monthly_nonpaid') }}" style="color: #333;"> 
+                                                                <i class="icon fa fa-check-circle" style="color: #333;"></i>
+                                                                <span class="title_name">&nbsp;&nbsp;Paid And Non Paid Members</span>
+                                                            </a>
                                                         </h6>
-                                                        <p class="text-muted">
+                                                        <p style="color: grey;" class="list-group-item-text ng-binding">
                                                             Hereby there is a list of active members who have both paid and not paid per current month.
                                                         </p>
+
                                                     </a>
                                                 </div>
-                                            </div>                                      
+                                            </div>                                        
                                         </div>
                                     </div>
                                 </div>
-                                <div>&nbsp;</div>
-                                <legend></legend>
-                                <div>&nbsp;</div>
+                            </div>
+                        </div>
+                        
+                        <div>&nbsp;</div>
+
+                        </div>
+                        <div>&nbsp;</div>
+                        <legend></legend>
+                        <div>&nbsp;</div>
+
+                        
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>                    
+            </div>                    
+
+        </div>
     </div>
-</div>
 @endsection
 
 @section('scripts')
