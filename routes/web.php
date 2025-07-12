@@ -13,7 +13,7 @@ include 'membership/members.php';
 // <==========================================membership routes============================================================================>
 
 Route::post('/welcome', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
-Route::get('/landing/homepage', [App\Http\Controllers\Auth\LoginController::class, 'homePage'])->name('landing/homepage');
+Route::get('/homepage', [App\Http\Controllers\Auth\LoginController::class, 'homePage'])->name('homepage');
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::get('/members', [App\Http\Controllers\Membership\MemberController::class, 'members'])->name('members');
 Route::get('/members_dt', [App\Http\Controllers\Membership\MemberController::class, 'getForDt'])->name('members/getForDt');

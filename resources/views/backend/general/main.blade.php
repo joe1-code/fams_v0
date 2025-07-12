@@ -76,6 +76,22 @@
     object-fit: cover;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-fluid {
+    flex: 1;
+}
+
+
 </style>
 
 
@@ -84,12 +100,15 @@
 <body style="font-family: 'Segoe UI', sans-serif;">
 
     <!-- Top Navigation -->
+     
 <nav class="navbar navbar-expand-lg gradient-bg px-4" style="background: linear-gradient(90deg, #1d2a3a 0%, #2f4a66 70%, #4caf50 100%);">
   <div class="container-fluid d-flex justify-content-between align-items-center">
     
     <!-- Empty div to balance flex -->
     <div style="width: 100px;"></div>
-
+     <button type="button" class="btn btn-sm px-3 text-white" id="vertical-menu-btn">
+        <i class="fa fa-fw fa-bars"></i>
+    </button>
     <!-- Centered title -->
     <div class="text-white fw-bold fs-5 mx-auto text-center" style="flex-grow: 1;">
       Family Management System (FAMS)
@@ -97,24 +116,23 @@
 
     <!-- User dropdown -->
     <div class="dropdown position-relative" style="min-width: 150px; text-align: right;">
-  <a href="#" 
-     class="nav-link dropdown-toggle text-white p-0" 
-     id="userDropdown" 
-     role="button" 
-     data-bs-toggle="dropdown" 
-     aria-expanded="false"
-     style="cursor: pointer;">
-    <i class="fas fa-user-circle me-1"></i> {{ Auth::user()->name ?? 'User' }}
-  </a>
-  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-    <li><a class="dropdown-item" href="#">Change Password</a></li>
-    <li><a class="dropdown-item" href="#">Profile</a></li>
-    <li><a class="dropdown-item" href="#">Manage Users</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
-  </ul>
-</div>
-
+      <a href="#" 
+        class="nav-link dropdown-toggle text-white p-0" 
+        id="userDropdown" 
+        role="button" 
+        data-bs-toggle="dropdown" 
+        aria-expanded="false"
+        style="cursor: pointer;">
+        <i class="fas fa-user-circle me-1"></i> {{ Auth::user()->lastname ?? 'User' }}
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+        <li><a class="dropdown-item" href="#">Change Password</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><a class="dropdown-item" href="#">Manage Users</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+      </ul>
+    </div>
 
   </div>
 </nav>
@@ -123,17 +141,40 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-2 gradient-bg sidebar py-4">
-                <div class="logo-wrapper mb-5 rounded-circle overflow-hidden mx-auto" style="width: 150px; height: 150px;">
-                  <img src="{{ asset('assets/images/exmpl.jpeg') }}" alt="Logo" class="w-100 h-100 object-fit-cover">
-               </div>
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home me-2"></i>HomePage</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-users me-2"></i>Members List</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-wallet me-2"></i>Monthly Payments</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-chart-line me-2"></i>Reports</a></li>
-                </ul>
-            </div>
+            <div class="col-md-2 gradient-bg sidebar d-flex flex-column align-items-center py-4" style="min-height: 100vh;">
+    <div class="logo-wrapper rounded-circle overflow-hidden mb-4" style="width: 120px; height: 120px;">
+        <img src="{{ asset('assets/images/exmpl.jpeg') }}" alt="Logo" class="w-100 h-100 object-fit-cover">
+    </div>
+
+    <ul class="nav flex-column w-100 px-3">
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{{ route('homepage') }}">
+                <i class="fas fa-home me-2"></i> Home
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{{ route('members') }}">
+                <i class="fas fa-users me-2"></i> Members List
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{{ route('payments') }}">
+                <i class="fas fa-money-bill-wave me-2"></i> Monthly Payments
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{{ route('monthly_arrears') }}">
+                <i class="fas fa-exclamation-circle me-2"></i> Monthly Arrears
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+                <i class="fas fa-chart-line me-2"></i> Reports
+            </a>
+        </li>
+    </ul>
+</div>
+
 
             <!-- Main Content -->
             <div class="col-md-10 py-4">
@@ -152,3 +193,19 @@
     @stack('js')
 </body>
 </html>
+<script>
+    document.getElementById('vertical-menu-btn').addEventListener('click', function () {
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.col-md-10');
+
+        if (sidebar.style.display === 'none') {
+            sidebar.style.display = 'block';
+            mainContent.classList.remove('col-md-12');
+            mainContent.classList.add('col-md-10');
+        } else {
+            sidebar.style.display = 'none';
+            mainContent.classList.remove('col-md-10');
+            mainContent.classList.add('col-md-12');
+        }
+    });
+</script>
