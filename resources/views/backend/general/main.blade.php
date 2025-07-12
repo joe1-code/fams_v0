@@ -77,7 +77,7 @@
 }
 
 html, body {
-    height: 100%;
+    height: 70%;
     margin: 0;
     padding: 0;
 }
@@ -141,39 +141,39 @@ body {
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-2 gradient-bg sidebar d-flex flex-column align-items-center py-4" style="min-height: 100vh;">
-    <div class="logo-wrapper rounded-circle overflow-hidden mb-4" style="width: 120px; height: 120px;">
-        <img src="{{ asset('assets/images/exmpl.jpeg') }}" alt="Logo" class="w-100 h-100 object-fit-cover">
-    </div>
+            <div class="col-md-2 gradient-bg sidebar d-flex flex-column align-items-center py-4" style="min-height: 89vh;">
+            <div class="logo-wrapper rounded-circle overflow-hidden mb-4" style="width: 120px; height: 120px;">
+                <img src="{{ asset('assets/images/exmpl.jpeg') }}" alt="Logo" class="w-100 h-100 object-fit-cover">
+            </div>
 
-    <ul class="nav flex-column w-100 px-3">
-        <li class="nav-item">
-            <a class="nav-link text-white" href="{{ route('homepage') }}">
-                <i class="fas fa-home me-2"></i> Home
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="{{ route('members') }}">
-                <i class="fas fa-users me-2"></i> Members List
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="{{ route('payments') }}">
-                <i class="fas fa-money-bill-wave me-2"></i> Monthly Payments
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="{{ route('monthly_arrears') }}">
-                <i class="fas fa-exclamation-circle me-2"></i> Monthly Arrears
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="#">
-                <i class="fas fa-chart-line me-2"></i> Reports
-            </a>
-        </li>
-    </ul>
-</div>
+            <ul class="nav flex-column w-100 px-3">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('homepage') }}">
+                        <i class="fas fa-home me-2"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('members') }}">
+                        <i class="fas fa-users me-2"></i> Members List
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('payments') }}">
+                        <i class="fas fa-money-bill-wave me-2"></i> Monthly Payments
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('monthly_arrears') }}">
+                        <i class="fas fa-exclamation-circle me-2"></i> Monthly Arrears
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <i class="fas fa-chart-line me-2"></i> Reports
+                    </a>
+                </li>
+            </ul>
+        </div>
 
 
             <!-- Main Content -->
