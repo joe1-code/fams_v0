@@ -2346,3 +2346,2017 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+
+<!-- month_payment blade -->
+ <!doctype html>
+<html lang="en">
+
+    
+    <head>
+        
+        <meta charset="utf-8" />
+        <title>Dashboard | Payment Form.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+        <style>
+            .content-layer1 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 60vh;
+                /* background-color: #f7f7f7; */
+            }
+            .card {
+                width: 50%;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            .card-header {
+                    background: linear-gradient(to right, #f5f5f5, #ffffff); /* Light smoke-like effect */
+                    color: black; /* Change text color to black for contrast */
+                    text-align: center;
+                    font-size: 1.25rem;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds some depth */
+            }
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+            .monthly_pay_butt {
+                text-align: center;
+            }
+         </style>
+
+    </head>
+
+    <script>
+    // setInterval(function() {
+    //     fetch("{{ route('logout') }}", {
+    //         method: "GET",
+    //         headers: {
+    //             "X-Requested-With": "XMLHttpRequest"
+    //         }
+    //     })
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             window.location.href = "{{ route('logout') }}";
+    //         }
+    //     })
+    //     .catch(error => {
+    //         console.error("Session expired:", error);
+    //         window.location.href = "{{ route('logout') }}";
+    //     });
+    // }, 12000000); // Check session every 2 minutes
+</script>
+
+
+    <body data-sidebar="dark" data-layout-mode="light">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="index.html" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                </span>
+                            </a>
+
+                            <a href="index.html" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo-light.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-light.png" alt="" height="19">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+                    </div>
+
+                    <div class="d-flex">
+
+                        <div class="dropdown d-inline-block d-lg-none ms-2">
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                aria-labelledby="page-header-search-dropdown">
+        
+                                <form class="p-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
+                                <i class="bx bx-fullscreen"></i>
+                            </button>
+                        </div>
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="assets/images/users/user4.png"
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1" key=""></span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Profile</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="{{ route('logout') }}" method="POST"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                                <i class="bx bx-cog bx-spin"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li class="menu-title" key="t-menu">Fund Items List</li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-group"></i>
+                                    <span key="t-contributions">Membership</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('home') }}" key="t-members">Home</a></li>
+                                    <li><a href="{{ route('members') }}" key="t-members">Members List</a></li>
+                                    <li><a href="#" key="t-members">Register Members</a></li>
+                                    <!-- <li><a href="dashboard-job.html"><span class="badge rounded-pill text-bg-success float-end" key="t-new">New</span> <span key="t-jobs">Jobs</span></a></li> -->
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-credit-card"></i>
+                                    <span key="t-contributions">Contributions</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('payments') }}" method='POST' key="t-payments">Monthly Payments</a></li>
+                                    <li><a href="{{ route('monthly_arrears') }}" key="t-arrears">Monthly Arrears</a></li>
+                                    <!-- <li><a href="dashboard-job.html"><span class="badge rounded-pill text-bg-success float-end" key="t-new">New</span> <span key="t-jobs">Jobs</span></a></li> -->
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid p-0">
+                        <div class="row m-0">
+                            <div class="col-lg-12">
+                                <div class="card w-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4" style="display: flex; justify-content:center;">MONTHLY CONTRIBUTIONS PAYMENT PROCESS</h4>
+                                        <div id="alert"></div>
+                                        <div class="content-layer1">
+                                            <div class="card w-90 p-0">
+                                                <div class="card-header">
+                                                    <small>Monthly Payment</small>
+                                                </div>
+                                                <div class="card-body">
+                                                    <form id="month_payment" enctype="multipart/form-data">
+                                                        @csrf 
+                                                        <div class="form-group row">
+                                                            <div class="col-md-6">
+                                                                <label for="member"><small>Select Members</small></label>
+                                                                <select class="form-control search-select" id="user_data" name="id" required>
+                                                                    <option value="" disabled selected></option>
+                                                                    @foreach($memberData as $data)
+                                                                        <option value="{{$data->id}}">{{ $data->firstname.' '.$data->lastname }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="document" class="form-label"><small>Upload Document</small></label>
+                                                                <input type="file" class="form-control" id="1" name="document">
+                                                                @if ($errors->has('document'))
+                                                                    <div class="text-danger">
+                                                                        {{ $errors->first('document') }}
+                                                                    </div>
+                                                                @endif
+                                                                <div class="invalid-feedback">
+                                                                    Please upload a document
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-md-6">
+                                                                <label for="paid_amount" class="form-label"><small>Amount (Tshs.)</small></label>
+                                                                <input type="number" class="form-control @error('paid_amount') is-invalid @enderror" id="paid_amount" name="paid_amount" placeholder="Enter Amount" required>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="payment_method"><small>Payment Method</small></label>
+                                                                <select class="form-control search-select" id="payment_method" name="payment_method" required>
+                                                                    <option value="" disabled selected></option>
+                                                                    @foreach($payment_methods as $methods)
+                                                                        <option value="{{$methods->id}}">{{ $methods->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <input type="hidden" id="module_id" name="module_id" value="1">
+                                                        <input type="hidden" id="module_group_id" name="module_group_id" value="1">
+
+                                                        <div class="monthly_pay_butt">
+                                                            <button type="submit" class="btn btn-success"><small>Submit</small></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @if(count($workflow))
+            <div class="col-lg-12" style="width: 115%; display:flex; justify-content:center;">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4" style="display: flex; justify-content:center;">MONTHLY CONTRIBUTIONS WORKFLOWS</h4>
+                        <div class="table-responsive">
+                            @include("contributions.monthly_contributions.includes.wf_track_html", $workflow)       
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif -->
+
+            
+            <!-- end main content-->
+        </div>
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+
+        <!-- apexcharts -->
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+        <!-- dashboard init -->
+        <script src="assets/js/pages/dashboard.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+    </body>
+
+
+<!-- Mirrored from themesbrand.com/skote/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Oct 2022 14:37:45 GMT -->
+</html>
+
+<!-- CSRF token -->
+@push('after-script-end')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    
+    $(document).ready(function(){
+
+       $('#month_payment').on('submit', function(e){
+            e.preventDefault();
+
+            var formData = new FormData(this);
+            
+
+            $.ajax({
+
+                url: "{{ route('get_monthly_payments') }}",
+                method: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response){
+
+                    Swal.fire({
+                    title: "Good job!",
+                    text: "You successfully paid your monthly bill!",
+                    icon: "success",
+                
+                    });
+
+                    window.location.reload();
+
+                },
+                error: function(xhr,status,error){
+
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        
+                        $('#alert').html('<div class="alert alert-danger">' + xhr.responseJSON.message + '</div>');
+                    }
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        
+                        $('#alert').html('<div class="alert alert-danger">' + xhr.responseJSON.message + '</div>');
+                     }
+                    Swal.fire({
+                            title: "Error",
+                            text: "An error occurred while processing your payment.",
+                            icon: "error"
+                        });                    
+                    console.error(xhr);
+                    
+                }
+            });
+       });
+
+
+    });
+</script>
+
+<!-- document_centre blade -->
+ <!doctype html>
+<html lang="en">
+    <head>
+        
+        <meta charset="utf-8" />
+        <title>Dashboard | Document Centre.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+            .content-layer1 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 60vh;
+                background-color: #f7f7f7;
+            }
+            .card {
+                width: 50%;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            .card-header {
+                    background: linear-gradient(to right, #f5f5f5, #ffffff); /* Light smoke-like effect */
+                    color: black; /* Change text color to black for contrast */
+                    text-align: center;
+                    font-size: 1.25rem;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds some depth */
+            }
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+            .monthly_pay_butt {
+                text-align: center;
+            }
+        </style>
+
+    </head>
+
+    <script>
+    setInterval(function() {
+        fetch("{{ route('logout') }}", {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                window.location.href = "{{ route('logout') }}";
+            }
+        })
+        .catch(error => {
+            console.error("Session expired:", error);
+            window.location.href = "{{ route('logout') }}";
+        });
+    }, 120000); // Check session every 2 minutes
+</script>
+
+
+    <body data-sidebar="dark" data-layout-mode="light">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="index.html" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                </span>
+                            </a>
+
+                            <a href="index.html" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo-light.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-light.png" alt="" height="19">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+                    </div>
+
+                    <div class="d-flex">
+
+                        <div class="dropdown d-inline-block d-lg-none ms-2">
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                aria-labelledby="page-header-search-dropdown">
+        
+                                <form class="p-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
+                                <i class="bx bx-fullscreen"></i>
+                            </button>
+                        </div>
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="assets/images/users/user4.png"
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1" key=""></span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Profile</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="{{ route('logout') }}" method="POST"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                                <i class="bx bx-cog bx-spin"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li class="menu-title" key="t-menu">Fund Items List</li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-group"></i>
+                                    <span key="t-contributions">Membership</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('landing/homepage') }}" key="t-members">HomePage</a></li>
+                                    <li><a href="{{ route('members') }}" key="t-members">Members List</a></li>
+                                    <li><a href="#" key="t-members">Register Members</a></li>
+                                    <!-- <li><a href="dashboard-job.html"><span class="badge rounded-pill text-bg-success float-end" key="t-new">New</span> <span key="t-jobs">Jobs</span></a></li> -->
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-credit-card"></i>
+                                    <span key="t-contributions">Contributions</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('payments') }}" method='POST' key="t-payments">Monthly Payments</a></li>
+                                    <li><a href="{{ route('monthly_arrears') }}" key="t-arrears">Monthly Arrears</a></li>
+                                    <!-- <li><a href="dashboard-job.html"><span class="badge rounded-pill text-bg-success float-end" key="t-new">New</span> <span key="t-jobs">Jobs</span></a></li> -->
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid p-0">
+                        <div class="row m-0">
+                            <div class="col-lg-12">
+                                <div class="card w-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4" style="display: flex; justify-content:center;">MONTHLY CONTRIBUTIONS PAYMENT DOCUMENTS</h4>
+                                        <div id="alert"></div>
+                                        <div class="content-layer1">
+                                            <div class="card w-90 p-0">
+                                                <div class="card-header">
+                                                    <small>Preview Payment Document</small> 
+                                                </div>
+                                                <div class="card-body">
+                                                    <form id="doc_view" method="get">
+                                                        @csrf
+                                                        <div class="form-group row">
+                                                            <div class="col-md-12">
+                                                                <label for="member"><small>Select Members</small></label>
+                                                                <select class="form-control search-select" id="user_data" name="id" required>
+                                                                        <option value="" disabled selected></option>
+                                                                        @foreach($memberData as $data)
+                                                                            <option value="{{$data->id}}">{{ $data->firstname.' '.$data->lastname }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @if ($errors->has('member'))
+                                                                        <div class="text-danger">{{ $errors->first('member') }}</div>
+                                                                    @endif
+                                                                    <div class="invalid-feedback">Please select a member</div>
+                                                            </div>
+                                                            
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-md-6">
+                                                                <label for="contr_month">Contribution Month</label>
+                                                                <select name="contr_month" id="contr_month" class="form-control search-select">
+                                                                    <option value="" disabled selected>Month</option>
+                                                                    @foreach(range(1, 12) as $month)
+                                                                        <option value="{{ str_pad($month, 2, '0', STR_PAD_LEFT) }}" 
+                                                                            {{ old('contr_month', isset($request->from_date) ? \Carbon\Carbon::parse($request->from_date)->format('m') : '') == str_pad($month, 2, '0', STR_PAD_LEFT) ? 'selected' : '' }}>
+                                                                            {{ \Carbon\Carbon::create()->month($month)->format('F') }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="contr_year">Contribution Year</label>
+                                                                <select name="contr_year" id="contr_year" class="form-control search-select">
+                                                                    <option value="" disabled selected>Year</option>
+                                                                    @foreach(range(\Carbon\Carbon::now()->format('Y'), 2022) as $year)
+                                                                        <option value="{{ $year }}" 
+                                                                            {{ old('contr_year', isset($request->from_date) ? \Carbon\Carbon::parse($request->from_date)->format('Y') : '') == $year ? 'selected' : '' }}>
+                                                                            {{ $year }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="monthly_preview_doc col-md-12 mt-3">
+                                                            <button type="submit" class="btn btn-success">Preview Document</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end main content-->
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+            <div data-simplebar class="h-100">
+                <div class="rightbar-title d-flex align-items-center px-3 py-4">
+            
+                    <h5 class="m-0 me-2">Settings</h5>
+
+                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                        <i class="mdi mdi-close noti-icon"></i>
+                    </a>
+                </div>
+
+                <!-- Settings -->
+                <hr class="mt-0" />
+                <h6 class="text-center mb-0">Choose Layouts</h6>
+
+                <div class="p-4">
+                    <div class="mb-2">
+                        <img src="assets/images/layouts/layout-1.jpg" class="img-thumbnail" alt="layout images">
+                    </div>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
+                        <label class="form-check-label" for="light-mode-switch">Light Mode</label>
+                    </div>
+    
+                    <div class="mb-2">
+                        <img src="assets/images/layouts/layout-2.jpg" class="img-thumbnail" alt="layout images">
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch">
+                        <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
+                    </div>
+    
+                    <div class="mb-2">
+                        <img src="assets/images/layouts/layout-3.jpg" class="img-thumbnail" alt="layout images">
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch">
+                        <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
+                    </div>
+
+                    <div class="mb-2">
+                        <img src="assets/images/layouts/layout-4.jpg" class="img-thumbnail" alt="layout images">
+                    </div>
+                    <div class="form-check form-switch mb-5">
+                        <input class="form-check-input theme-choice" type="checkbox" id="dark-rtl-mode-switch">
+                        <label class="form-check-label" for="dark-rtl-mode-switch">Dark RTL Mode</label>
+                    </div>
+
+            
+                </div>
+
+            </div> <!-- end slimscroll-menu-->
+        </div>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+        <script src="assets/js/app.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.css"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    </body>
+
+
+<!-- Mirrored from themesbrand.com/skote/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Oct 2022 14:37:45 GMT -->
+</html>
+<div class="modal fade" id="monthly_doc_modal" tabindex="-1" role="dialog" aria-labelledby="monthly_doc_modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Document Preview</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="document_frame"></div> <!-- This is where the document will be displayed -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('#doc_view');
+
+    function checkClose(){
+
+         $('#close').on('click', function(){
+        $('#monthly_doc_modal').modal('hide');
+    });
+
+    }
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch('{{ route("monthly_preview_document") }}', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            const previewContainer = document.getElementById('document_frame');
+                
+            if (data.status === 'success') {
+                const fileType = data.document.split('.').pop().toLowerCase();
+                const filePath = `{{ asset('storage/documents') }}/${data.document}`;
+                
+                if (fileType === 'pdf') {
+                    previewContainer.innerHTML = `<embed src="${filePath}" type="application/pdf" width="100%" height="600px">`;
+                } else if (['jpg', 'jpeg', 'png', 'gif'].includes(fileType)) {
+                    previewContainer.innerHTML = `<img src="${filePath}" style="max-width: 100%; height: auto;" alt="Document Preview">`;
+                } else {
+                    previewContainer.innerHTML = `<p>Unable to preview this file type.</p>`;
+                }
+
+                // Show the modal
+                $('#monthly_doc_modal').modal('show');
+                $('#close').on('click', function(){
+                $('#monthly_doc_modal').modal('hide');
+             });
+            } else {
+                console.log(data);
+                
+                Swal.fire({
+                        title: "Not Found",
+                        text: previewContainer.innerHTML = `${data.message}`,
+                        icon: "error" 
+                    });
+
+            }
+        })
+        .catch(error => {
+
+                // console.error(xhr);
+            console.error('Error:', error);
+        });
+    });
+});
+
+</script>
+
+<!-- nonpaid_members blade -->
+ <!doctype html>
+<html lang="en"> 
+    <head>
+        
+        <meta charset="utf-8" />
+        <title>Dashboard | Paid & Non-paid Members.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+    </head>
+    <script>
+    setInterval(function() {
+        fetch("{{ route('logout') }}", {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                window.location.href = "{{ route('logout') }}";
+            }
+        })
+        .catch(error => {
+            console.error("Session expired:", error);
+            window.location.href = "{{ route('logout') }}";
+        });
+    }, 120000); // Check session every 2 minutes
+</script>
+
+
+    <body data-sidebar="dark" data-layout-mode="light">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="index.html" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                </span>
+                            </a>
+
+                            <a href="index.html" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo-light.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-light.png" alt="" height="19">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+                    </div>
+
+                    <div class="d-flex">
+
+                        <div class="dropdown d-inline-block d-lg-none ms-2">
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                aria-labelledby="page-header-search-dropdown">
+        
+                                <form class="p-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
+                                <i class="bx bx-fullscreen"></i>
+                            </button>
+                        </div>
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="assets/images/users/user4.png"
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1" key=""></span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Profile</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="{{ route('logout') }}" method="POST"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                                <i class="bx bx-cog bx-spin"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li class="menu-title" key="t-menu">Fund Items List</li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-group"></i>
+                                    <span key="t-contributions">Membership</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('home') }}" key="t-members">Home</a></li>
+                                    <li><a href="{{ route('members') }}" key="t-members">Members List</a></li>
+                                    <li><a href="#" key="t-members">Register Members</a></li>
+                                    <!-- <li><a href="dashboard-job.html"><span class="badge rounded-pill text-bg-success float-end" key="t-new">New</span> <span key="t-jobs">Jobs</span></a></li> -->
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-credit-card"></i>
+                                    <span key="t-contributions">Contributions</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('payments') }}" method='POST' key="t-payments">Monthly Payments</a></li>
+                                    <li><a href="{{ route('monthly_arrears') }}" key="t-arrears">Monthly Arrears</a></li>
+                                    <!-- <li><a href="dashboard-job.html"><span class="badge rounded-pill text-bg-success float-end" key="t-new">New</span> <span key="t-jobs">Jobs</span></a></li> -->
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4" style="display: flex; justify-content:center;">PAID & NON-PAID MEMBERS</h4>
+                                        <div class="table-responsive">
+                                            <table class="table align-middle table-nowrap " id="non_paid_members">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th style="width: 20px;">No.(#)</th>
+                                                        <th width="25%">Name</th>
+                                                        <th width="15%">Region</th>
+                                                        <th width="15%">District</th>
+                                                        <th width="15%">DOB</th>
+                                                        <th width="15%">Phone</th>
+                                                        <th width="15%">Payment Status</th>
+                                                    </tr>
+                                                </thead>
+                                                
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <footer class="footer">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <script>document.write(new Date().getFullYear())</script> © FAMS.
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-sm-end d-none d-sm-block">
+                                                Design & Develop by FAMS.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </footer>
+                        </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+
+        <!-- apexcharts -->
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+        <!-- dashboard init -->
+        <script src="assets/js/pages/dashboard.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+    </body>
+
+
+<!-- Mirrored from themesbrand.com/skote/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Oct 2022 14:37:45 GMT -->
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        
+        $('#non_paid_members').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('get_monthly_nonpaid') }}",
+            columns: [
+                { 
+                    data: null, 
+                    name: 'index', 
+                    orderable: false, 
+                    searchable: false,
+                    render: function(data, type, row, meta) {
+                        return meta.row + 1; // Display index number (starting from 1)
+                    } 
+                },
+                { data: 'fullname', name: 'fullname' },
+                { data: 'region', name: 'region' },
+                { data: 'district', name: 'district' },
+                { data: 'dob', name: 'dob' },
+                { data: 'phone', name: 'phone' },
+                {
+                    data: 'pay_status',
+                    name: 'pay_status',
+                    orderable: false,
+                    searchable: false,
+                    render: function(data) {
+                        return data === 'Paid' ? 
+                            '<span class="badge bg-success">Paid</span>' : 
+                            '<span class="badge bg-warning">Not Paid</span>';
+                    }
+                }
+            ],
+            success: function(response){
+                console.log(response);
+                
+            },
+            order: [[0, 'desc']],
+            dom: '<"d-flex justify-content-end"f><"table-responsive"t><"d-flex justify-content-end"ip>',
+            // dom: 'Bfrtip',
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+            lengthMenu: [10, 25, 50, 100],
+            pageLength: 10,
+            responsive: true // Enable responsive feature
+        });
+    });
+</script>
+
+<!-- monthly_arrears blade -->
+ 
+<!doctype html>
+<html lang="en">
+
+    
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Dashboard | FAMS - Family Management system.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/fams-logo.ico">
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+    </head>
+    <script>
+    setInterval(function() {
+        fetch("{{ route('logout') }}", {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                window.location.href = "{{ route('logout') }}";
+            }
+        })
+        .catch(error => {
+            console.error("Session expired:", error);
+            window.location.href = "{{ route('logout') }}";
+        });
+    }, 120000); // Check session every 2 minutes
+</script>
+
+    <body data-sidebar="dark" data-layout-mode="light">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="index.html" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                </span>
+                            </a>
+
+                            <a href="index.html" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo-light.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-light.png" alt="" height="19">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+                    </div>
+
+                    <div class="d-flex">
+
+                        <div class="dropdown d-inline-block d-lg-none ms-2">
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                aria-labelledby="page-header-search-dropdown">
+        
+                                <form class="p-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
+                                <i class="bx bx-fullscreen"></i>
+                            </button>
+                        </div>
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="assets/images/users/user4.png"
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1" key=""></span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Profile</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="{{ route('logout') }}" method="POST"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                                <i class="bx bx-cog bx-spin"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li class="menu-title" key="t-menu">Fund Items List</li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-group"></i>
+                                    <span key="t-contributions">Membership</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('landing/homepage') }}" key="t-members">HomePage</a></li>
+                                    <li><a href="{{ route('members') }}" key="t-members">Members List</a></li>
+                                    <li><a href="#" key="t-members">Register Members</a></li>
+                                    <!-- <li><a href="dashboard-job.html"><span class="badge rounded-pill text-bg-success float-end" key="t-new">New</span> <span key="t-jobs">Jobs</span></a></li> -->
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-credit-card"></i>
+                                    <span key="t-contributions">Contributions</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('payments') }}" method='POST' key="t-payments">Monthly Payments</a></li>
+                                    <li><a href="{{ route('monthly_arrears') }}" key="t-arrears">Monthly Arrears</a></li>
+                                    <!-- <li><a href="dashboard-job.html"><span class="badge rounded-pill text-bg-success float-end" key="t-new">New</span> <span key="t-jobs">Jobs</span></a></li> -->
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            
+                            <div class="col-xl-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <p class="text-muted fw-medium">Total Members Arrears</p>
+                                                        <h4 class="mb-0"><small>{{ number_2_format($arrears_info['members_arrears'][0]['members_arrears']).' '.('(Tsh.)') }}</small></h4>
+                                                    </div>
+
+                                                    <div class="flex-shrink-0 align-self-center">
+                                                        <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+                                                            <span class="avatar-title">
+                                                                <i class="fas fa-users font-size-24"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <p class="text-muted fw-medium">Total Penalties(50% rate)</p>
+                                                        <h4 class="mb-0"><small>{{ number_2_format($arrears_info['members_arrears'][0]['total_penalties']).' '.('(Tsh.)') }}</small></h4>
+                                                    </div>
+
+                                                    <div class="flex-shrink-0 align-self-center ">
+                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                                <i class="bx bx-archive-in font-size-24"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <p class="text-muted fw-medium">Total Penalties And Arrears</p>
+                                                        <h4 class="mb-0"><small>{{ number_2_format($arrears_info['members_arrears'][0]['total_arrears']).' '.('(Tsh.)') }}</small></h4>
+                                                    </div>
+
+                                                    <div class="flex-shrink-0 align-self-center">
+                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                                <i class="bx bx-trending-up font-size-24"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <p class="text-muted fw-medium">Individual Arrears</p>
+                                                        <h4 class="mb-0"><small> {{ number_2_format($arrears_info['individual_arrears']).' '.('(Tsh.)') }}</small></h4>
+                                                    </div>
+
+                                                    <div class="flex-shrink-0 align-self-center">
+                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                                <i class="fas fa-dollar-sign font-size-24"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4" style="display: flex; justify-content:center;">OUTSTANDING ARREARS</h4>
+                <div class="table-responsive">
+                    <table class="table align-middle table-nowrap " id="member_arrears">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 20px;">No.(#)</th>
+                                <th class="align-middle">Full Name</th>
+                                <th class="align-middle">Region</th>
+                                <th class="align-middle">District</th>
+                                <th class="align-middle">Phone</th>
+                                <th class="align-middle">Outstanding Arrears</th>
+                                <th class="align-middle">Payment Status</th>
+                                <th class="align-middle">Action</th>
+                            </tr>
+                        </thead>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <div>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script> © FAMS.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    Design & Develop by FAMS.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+            <div data-simplebar class="h-100">
+                <div class="rightbar-title d-flex align-items-center px-3 py-4">
+            
+                    <h5 class="m-0 me-2">Settings</h5>
+
+                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                        <i class="mdi mdi-close noti-icon"></i>
+                    </a>
+                </div>
+
+                <!-- Settings -->
+                <hr class="mt-0" />
+                <h6 class="text-center mb-0">Choose Layouts</h6>
+
+                <div class="p-4">
+                    <div class="mb-2">
+                        <img src="assets/images/layouts/layout-1.jpg" class="img-thumbnail" alt="layout images">
+                    </div>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
+                        <label class="form-check-label" for="light-mode-switch">Light Mode</label>
+                    </div>
+    
+                    <div class="mb-2">
+                        <img src="assets/images/layouts/layout-2.jpg" class="img-thumbnail" alt="layout images">
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch">
+                        <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
+                    </div>
+    
+                    <div class="mb-2">
+                        <img src="assets/images/layouts/layout-3.jpg" class="img-thumbnail" alt="layout images">
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch">
+                        <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
+                    </div>
+
+                    <div class="mb-2">
+                        <img src="assets/images/layouts/layout-4.jpg" class="img-thumbnail" alt="layout images">
+                    </div>
+                    <div class="form-check form-switch mb-5">
+                        <input class="form-check-input theme-choice" type="checkbox" id="dark-rtl-mode-switch">
+                        <label class="form-check-label" for="dark-rtl-mode-switch">Dark RTL Mode</label>
+                    </div>
+
+            
+                </div>
+
+            </div> <!-- end slimscroll-menu-->
+        </div>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+
+        <!-- apexcharts -->
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+        <!-- dashboard init -->
+        <script src="assets/js/pages/dashboard.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+    </body>
+
+
+<!-- Mirrored from themesbrand.com/skote/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Oct 2022 14:37:45 GMT -->
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+<script>
+
+$(document).ready(function() {
+    
+    
+    $('#member_arrears').DataTable({
+    processing: true,
+    serverSide: true,
+    ajax: "{{ route('monthly_arrears/getForDatatable') }}",
+    columns: [
+        { 
+            data: null, 
+            name: 'index', 
+            orderable: false, 
+            searchable: false,
+            render: function(data, type, row, meta) {
+                return meta.row + 1; // Display index number (starting from 1)
+            } 
+        },
+        { data: 'fullname', name: 'fullname' },
+        { data: 'region_name', name: 'region_name' },
+        { data: 'district_name', name: 'district_name' },
+        { data: 'phone', name: 'phone' },
+        { data: 'arrears', name: 'arrears' },
+        {
+            data: 'pay_status',
+            name: 'pay_status',
+            orderable: false,
+            searchable: false,
+            render: function(data) {
+                return data === 'Paid' ? 
+                    '<span class="badge bg-success">Paid</span>' : 
+                    '<span class="badge bg-warning">Not Paid</span>';
+            }
+        },
+        {
+            data: null,
+            name: 'action',
+            orderable: false,
+            searchable: false,
+            render: function(data, type, row) {
+                var paymentUrl = "{{ route('arrears_payment') }}";
+
+                return `
+                    <form action="${paymentUrl}" method="POST" style="display:inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-primary">Arrears Payment</button>
+                    </form>
+                `;            
+            }
+        }
+    ],
+    fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+  $('td', nRow).click(function() {
+    document.location.href = "{{ route('arrears_summary') }}?id=" + aData['id'];
+  }).hover(function() {
+    $(this).css('cursor', 'pointer');
+  }, function() {
+    $(this).css('cursor', 'auto');
+  });
+}
+,
+    success: function(response){
+        console.log(response);
+        
+    },
+    order: [[0, 'desc']],
+    dom: '<"d-flex justify-content-end"f><"table-responsive"t><"d-flex justify-content-end"ip>',
+    // dom: 'Bfrtip',
+    buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+    lengthMenu: [10, 25, 50, 100],
+    pageLength: 10,
+    responsive: true 
+});
+});
+</script>
+
+<!-- arrears_payments -->
+ 
+<!doctype html>
+<html lang="en">
+<style>
+    /* Add faint green border styling for separator lines */
+    .separator-line {
+        /**faint green */
+         border-bottom: 1px solid #a0d6a0; 
+        /* border-bottom: 1px solid #7db8d6;  */
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .title_name{
+        font-size: 16px;
+        color: #333333; 
+    }
+
+    .list-group-item-heading {
+        font-weight: normal;
+    }
+</style>
+
+<!-- Mirrored from themesbrand.com/skote/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Oct 2022 14:34:47 GMT -->
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Dashboard | FAMS - Family Management system.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    </head>
+    <script>
+    setInterval(function() {
+        fetch("{{ route('logout') }}", {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                window.location.href = "{{ route('logout') }}";
+            }
+        })
+        .catch(error => {
+            console.error("Session expired:", error);
+            window.location.href = "{{ route('logout') }}";
+        });
+    }, 120000); // Check session every 2 minutes
+</script>
+
+
+    <body data-sidebar="dark" data-layout-mode="light">
+    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="index.html" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                </span>
+                            </a>
+
+                            <a href="index.html" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo-light.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-light.png" alt="" height="19">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+
+                    </div>
+
+                    <div class="d-flex">
+
+                        <div class="dropdown d-inline-block d-lg-none ms-2">
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                aria-labelledby="page-header-search-dropdown">
+        
+                                <form class="p-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
+                                <i class="bx bx-fullscreen"></i>
+                            </button>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="assets/images/users/user4.png"
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1" key=""></span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Profile</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="{{ route('logout') }}" method="POST"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                                <i class="bx bx-cog bx-spin"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li class="menu-title" key="t-menu">Fund Items List</li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-group"></i>
+                                    <span key="t-contributions">Membership</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('home') }}" key="t-members">Home</a></li>
+                                    <li><a href="{{ route('members') }}" key="t-members">Members List</a></li>
+                                    <li><a href="#" key="t-members">Register Members</a></li>
+                                    <!-- <li><a href="dashboard-job.html"><span class="badge rounded-pill text-bg-success float-end" key="t-new">New</span> <span key="t-jobs">Jobs</span></a></li> -->
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-credit-card"></i>
+                                    <span key="t-contributions">Contributions</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('payments') }}" method='POST' key="t-payments">Monthly Payments</a></li>
+                                    <li><a href="{{ route('monthly_arrears') }}" key="t-arrears">Monthly Arrears</a></li>
+                                    <!-- <li><a href="dashboard-job.html"><span class="badge rounded-pill text-bg-success float-end" key="t-new">New</span> <span key="t-jobs">Jobs</span></a></li> -->
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">                        
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4" style="display: flex; justify-content:center;">ARREARS PAYMENT MENU</h4>
+                                <div class="row">
+                        <div class="col-md-12">
+                            <div>&nbsp;</div>
+                            <div class="computation-group">
+                                <!-- Here to put the content panel-->
+                                <div style="color:#fff">
+                                    <div class="col-sm-12 col-md-12">
+
+                                        <br>
+                                        <!-- Add a slightly darker grey background to the heading or surrounding div -->
+                                        <div style="background-color: #d3d3d3; padding: 10px;">
+                                            <h6 class="cancel_button site-btn" style="color: black; margin: 0; display:flex; justify-content:center;">ARREARS PAYMENT PROCESS</h6>
+                                        </div>
+                                        <br>
+
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="separator-line">
+                                                    <a href="#">
+                                                        <h6 class="list-group-item-heading ng-binding">
+                                                            <a href="{{ route('pay_arrears') }}" style="color: inherit;"> 
+                                                                <i class="icon fa fa-credit-card" style="color: #333;"></i>
+                                                                <span class="title_name">&nbsp;&nbsp;Process Arrears Payments</span>
+                                                            </a>
+                                                        </h6>
+                                                        <p style="color: grey;" class="list-group-item-text ng-binding">
+                                                            Pay your previous months arrears which are pending ready for processing
+                                                        </p>
+
+                                                    </a>
+                                                </div>
+                                                <div class="separator-line">
+                                                    <a href="#">
+                                                        <h6 class="list-group-item-heading ng-binding">
+                                                            <a href="#" style="color: inherit;"> 
+                                                                <i class="icon fa fa-history" style="color: #333;"></i>
+                                                                <span class="title_name">&nbsp;&nbsp;Workflow History</span>
+                                                            </a>
+                                                        </h6>
+                                                        <p style="color: grey;" class="list-group-item-text ng-binding">
+                                                            Keep Track or Make Followup of your Workflows for submitted Arrears Payments
+                                                        </p>
+
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="separator-line">
+                                                    <a href="{{ route('attached_docs') }}" style="color: inherit;">
+                                                        <h6 class="list-group-item-heading ng-binding">
+                                                            <i class="icon fa fa-book-open"  style="color: #333;"></i>
+                                                            <span class="title_name">&nbsp;&nbsp;Document Centre</span>
+                                                        </h6>
+                                                            <p style="color: grey;" class="list-group-item-text ng-binding">
+                                                                View your submitted documents ready for payment processing 
+                                                            </p>
+                                                    </a>
+                                                </div>
+                                                <div class="separator-line">
+                                                    <a href="#">
+                                                        <h6 class="list-group-item-heading ng-binding">
+                                                            <a href="#" style="color: inherit;"> 
+                                                                <i class="icon fa fa-clock" style="color: #333;"></i>
+                                                                <span class="title_name">&nbsp;&nbsp;Backlog Arrears</span>
+                                                            </a>
+                                                        </h6>
+                                                        <p style="color: grey;" class="list-group-item-text ng-binding">
+                                                            These are overdue arrears which have prolonged for over 6 months (Chronic Arrears).
+                                                        </p>
+
+                                                    </a>
+                                                </div>
+                                            </div>                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>&nbsp;</div>
+
+                        </div>
+                        <div>&nbsp;</div>
+                        <legend></legend>
+                        <div>&nbsp;</div>
+
+                        
+                            </div>
+                        </div>
+                    </div>
+            </div>                    
+
+        </div>
+    </div>
+<!-- Transaction Modal -->
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script> © FAMS.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    Design & Develop by FAMS.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+
+        <!-- apexcharts -->
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+        <!-- dashboard init -->
+        <script src="assets/js/pages/dashboard.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+    </body>
+
+
+<!-- Mirrored from themesbrand.com/skote/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Oct 2022 14:37:45 GMT -->
+</html>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+
+    viewDetailsButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const memberId = this.getAttribute('data-id');
+            const memberName = this.getAttribute('data-name');
+
+            document.getElementById('member-id').textContent = memberId;
+            document.getElementById('member-name').textContent = memberName;
+            document.getElementById('edit-member-id').value = memberId;
+        });
+    });
+});
+</script>
+
