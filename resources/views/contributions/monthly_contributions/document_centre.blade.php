@@ -100,8 +100,16 @@
 @endsection
 
 @push('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+        <script src="assets/js/app.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -111,6 +119,7 @@
                 e.preventDefault();
 
                 const formData = new FormData(form);
+                
                 fetch('{{ route("monthly_preview_document") }}', {
                     method: 'POST',
                     headers: {
@@ -133,8 +142,11 @@
                         } else {
                             previewContainer.innerHTML = `<p>Unable to preview this file type.</p>`;
                         }
-
+                        console.log('nafikaa..');
+                        
                         $('#monthly_doc_modal').modal('show');
+                        console.log('nafikaa..down');
+
                     } else {
                         Swal.fire({
                             title: "Not Found",
@@ -160,11 +172,13 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Document Preview</h5>
-                <span aria-hidden="true">&times;</span>
+                <h5 class="modal-title" id="modalTitle">Document Preview</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
-                <div id="document_frame"></div>
+                <div id="document_frame"></div> <!-- This is where the document will be displayed -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
